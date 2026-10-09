@@ -16,7 +16,7 @@ Manifesto-style brand for Christian men, aged 25-55, mostly friends-of-friends o
 
 ## Color
 
-Pure monochrome plus one saturated pop. Dark theme only, locked.
+Pure monochrome plus one warm pop taken from the app UI. Dark theme only, locked.
 
 | Token | Hex | Use |
 |---|---|---|
@@ -24,9 +24,9 @@ Pure monochrome plus one saturated pop. Dark theme only, locked.
 | `--ink-2` | `#1c1c1c` | Photo placeholder / raised surface |
 | `--paper` | `#ededea` | Primary text |
 | `--mute` | `#9a9a96` | Secondary text |
-| `--signal` | `#e2643a` | The one accent. Emphasis words, CTA fill, strike-throughs. Nothing else. |
+| `--signal` | `#f2b35a` | The one accent, matched to the app's own button colour. Emphasis words, CTA fill, strike-throughs. Nothing else. |
 
-Banned: beige/bone backgrounds, brass/gold accents, purple gradients, glows.
+Banned: beige/bone backgrounds, brass/metallic-gold accents, purple gradients, glows.
 
 ## Type
 

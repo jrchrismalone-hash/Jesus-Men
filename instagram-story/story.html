@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #121212; --ink-2: #1c1c1c; --paper: #ededea; --mute: #9a9a96; --signal: #e2643a;
+    --ink: #121212; --ink-2: #1c1c1c; --paper: #ededea; --mute: #9a9a96; --signal: #f2b35a;
     --top: 250px; --bottom: 340px; --side: 80px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -52,7 +52,7 @@
 
   /* S6 */
   .cta { display: flex; align-items: stretch; margin-top: 56px; }
-  .cta .a { flex: 1; display: flex; align-items: center; padding: 0 44px; font-weight: 600; font-size: 44px; border: 3px solid var(--paper); border-right: 0; }
+  .cta .a { flex: 1; display: flex; align-items: center; padding: 0 44px; font-weight: 600; font-size: 40px; border: 3px solid var(--paper); border-left: 0; }
   .cta .b { display: flex; align-items: center; padding: 34px 56px; background: var(--signal); color: var(--ink); font-weight: 900; font-size: 76px; letter-spacing: -.01em; }
 </style>
 </head>
@@ -60,9 +60,7 @@
 
 <!-- 1. Full-bleed photo, statement bottom-left -->
 <section class="slide" id="s1">
-  <div class="photo" style="inset:0" data-n="1" data-label=""></div>
-  <div class="scrim"></div>
-  <div class="abs" style="bottom:var(--bottom)">
+  <div class="abs" style="top:50%; transform:translateY(-50%)">
     <div class="label" style="margin-bottom:44px">Real talk, men</div>
     <h1 class="d xl">Men are under <em>attack.</em></h1>
     <p class="body" style="margin-top:48px">The world has never worked this hard to make men <b>passive, soft, and absent.</b></p>
@@ -117,20 +115,19 @@
 
 <!-- 6. Full-bleed photo, single CTA -->
 <section class="slide" id="s6">
-  <div class="photo" style="inset:0" data-n="6" data-label=""></div>
+  <div class="photo" style="inset:0; filter:brightness(.55) saturate(.7)" data-n="6" data-label=""></div>
   <div class="scrim"></div>
   <div class="abs" style="bottom:var(--bottom)">
     <div class="label" style="margin-bottom:44px">Testers wanted</div>
     <h2 class="d l">I need a few <em>good</em> men.</h2>
     <p class="body" style="margin-top:44px">Use it. Break it. <b>Tell me the truth.</b></p>
-    <div class="cta"><span class="a">DM me the word</span><span class="b">IRON</span></div>
+    <div class="cta"><span class="b">DM me</span><span class="a">to get early access</span></div>
     <p class="body" style="margin-top:40px; font-size:32px">Iron sharpens iron. Proverbs 27:17</p>
   </div>
 </section>
 
 <script>
   const labels = {
-    1: 'Photo 1: lone man from behind at dusk, storm sky or empty road',
     3: 'Photo 3: hands on an open Bible, early-morning window light',
     4: 'Photo 4: screenshot of the app, or a man reading on his phone at dawn',
     5: 'Photo 5: dad walking with his kid outdoors, golden hour, from behind',
