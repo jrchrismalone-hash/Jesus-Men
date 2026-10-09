@@ -3,209 +3,148 @@
 <head>
 <meta charset="utf-8">
 <title>Instagram Story</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<!-- Design tokens and rules: see /DESIGN.md -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bone: #f5f1ea;
-    --dim: rgba(245,241,234,.68);
-    --gold: #e2a64b;
-    --glass: rgba(20,18,16,.42);
-    --line: rgba(255,255,255,.16);
+    --ink: #121212; --ink-2: #1c1c1c; --paper: #ededea; --mute: #9a9a96; --signal: #e2643a;
+    --top: 250px; --bottom: 340px; --side: 80px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #222; font-family: "Inter Tight", sans-serif; }
-  /* 1080x1920 story frame. Copy sits between y=250 and y=1580 to clear IG's UI. */
-  .slide {
-    width: 1080px; height: 1920px; position: relative; overflow: hidden; color: var(--bone);
-    margin-bottom: 40px; background: #0b0a09;
-  }
-  /* Full-bleed photo. Drop photos/N.jpg in and it shows; until then a placeholder appears. */
-  .photo {
-    position: absolute; inset: 0;
-    background: var(--img, none) center / cover no-repeat,
-                radial-gradient(120% 70% at 70% 20%, #3b3026 0%, #15120f 55%, #0b0a09 100%);
-  }
-  .photo .ph {
-    position: absolute; top: 300px; left: 72px; right: 72px; height: 560px;
-    border: 3px dashed rgba(255,255,255,.22); border-radius: 40px;
-    display: flex; align-items: center; justify-content: center; text-align: center; padding: 60px;
-    font: 500 34px/1.4 "Inter Tight"; color: rgba(255,255,255,.4); letter-spacing: .02em;
-  }
-  .photo.has-img .ph { display: none; }
-  .shade {
-    position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,.15) 45%, rgba(8,7,6,.88) 72%, #080706 100%);
-  }
-  .content {
-    position: absolute; left: 72px; right: 72px; bottom: 340px;
-    display: flex; flex-direction: column; gap: 40px;
-  }
-  .top {
-    position: absolute; top: 250px; left: 72px; right: 72px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .pill {
-    display: inline-flex; align-items: center; gap: 14px; padding: 16px 28px; border-radius: 999px;
-    background: var(--glass); backdrop-filter: blur(18px); border: 1.5px solid var(--line);
-    font-weight: 600; font-size: 28px; letter-spacing: .08em; text-transform: uppercase;
-  }
-  .pill .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 18px var(--gold); }
-  .count { font-weight: 500; font-size: 28px; color: var(--dim); letter-spacing: .1em; }
-  h1, h2 { font-weight: 900; letter-spacing: -.035em; line-height: .94; }
-  h1 { font-size: 150px; }
-  h2 { font-size: 118px; }
-  .serif { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; letter-spacing: -.01em; color: var(--gold); }
-  p { font-size: 44px; line-height: 1.38; color: var(--dim); font-weight: 400; }
-  p b { color: var(--bone); font-weight: 600; }
-  .glass {
-    background: var(--glass); backdrop-filter: blur(24px); border: 1.5px solid var(--line);
-    border-radius: 40px; padding: 44px 48px;
-  }
-  .chips { display: flex; flex-wrap: wrap; gap: 18px; }
-  .chip {
-    padding: 22px 34px; border-radius: 999px; font-size: 38px; font-weight: 600;
-    background: rgba(255,255,255,.08); border: 1.5px solid var(--line); backdrop-filter: blur(18px);
-  }
-  .chip s { color: var(--dim); text-decoration-color: var(--gold); text-decoration-thickness: 5px; }
-  .verse { font-family: "Instrument Serif", serif; font-style: italic; font-size: 64px; line-height: 1.18; color: var(--bone); }
-  .ref { margin-top: 24px; font-size: 28px; font-weight: 600; letter-spacing: .14em; color: var(--gold); text-transform: uppercase; }
-  .feat { display: flex; gap: 32px; align-items: center; padding: 30px 0; border-top: 1.5px solid var(--line); }
-  .feat:first-child { border-top: 0; padding-top: 0; }
-  .feat:last-child { padding-bottom: 0; }
-  .ico {
-    flex: none; width: 92px; height: 92px; border-radius: 28px; display: grid; place-items: center;
-    background: linear-gradient(145deg, #f0b75e, #b9792a); color: #1a1208;
-  }
-  .ico svg { width: 46px; height: 46px; }
-  .feat h3 { font-size: 42px; font-weight: 700; letter-spacing: -.01em; }
-  .feat p { font-size: 34px; margin-top: 6px; }
-  .cta {
-    display: flex; align-items: center; justify-content: space-between; padding: 30px 30px 30px 52px;
-    border-radius: 999px; background: var(--bone); color: #0b0a09;
-  }
-  .cta span { font-size: 40px; font-weight: 600; }
-  .cta b { font-size: 48px; font-weight: 900; background: #0b0a09; color: var(--gold); padding: 22px 44px; border-radius: 999px; letter-spacing: .04em; }
+  body { background: #444; font-family: Archivo, sans-serif; }
+  .slide { width: 1080px; height: 1920px; position: relative; overflow: hidden; background: var(--ink); color: var(--paper); margin-bottom: 40px; }
 
-  /* Phone mockup for slide 4 */
-  .phone {
-    position: absolute; top: 330px; left: 50%; transform: translateX(-50%) rotate(-4deg);
-    width: 520px; height: 1060px; border-radius: 84px; padding: 22px;
-    background: linear-gradient(145deg, #3a3631, #121110); box-shadow: 0 60px 120px rgba(0,0,0,.6), inset 0 0 0 2px rgba(255,255,255,.08);
+  /* Photo slot: shows photos/N.jpg when present, else a labeled placeholder */
+  .photo { position: absolute; background: var(--ink-2) var(--img, none) center / cover no-repeat; }
+  .photo::after {
+    content: attr(data-label); position: absolute; left: 40px; bottom: 40px; right: 40px;
+    font: 500 26px/1.4 Archivo; color: #5c5c59; letter-spacing: .02em;
   }
-  .screen {
-    width: 100%; height: 100%; border-radius: 64px; overflow: hidden; position: relative;
-    background: linear-gradient(180deg, #1d1915 0%, #0e0c0a 100%); padding: 96px 40px 40px;
-  }
-  .notch { position: absolute; top: 26px; left: 50%; transform: translateX(-50%); width: 150px; height: 42px; border-radius: 30px; background: #000; }
-  .scr-hi { font-size: 24px; color: var(--dim); }
-  .scr-h { font-size: 44px; font-weight: 800; letter-spacing: -.02em; margin: 6px 0 28px; }
-  .scr-card { border-radius: 30px; padding: 28px; margin-bottom: 18px; background: rgba(255,255,255,.06); border: 1.5px solid var(--line); }
-  .scr-card.hero { background: linear-gradient(145deg, #e2a64b, #9c6222); color: #1a1208; border: 0; }
-  .scr-card .lbl { font-size: 19px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; opacity: .75; }
-  .scr-card .t { font-size: 30px; font-weight: 700; margin-top: 8px; line-height: 1.2; }
-  .scr-card .s { font-family: "Instrument Serif", serif; font-style: italic; font-size: 28px; margin-top: 10px; line-height: 1.25; }
-  .bar { height: 12px; border-radius: 99px; background: rgba(255,255,255,.1); margin-top: 18px; overflow: hidden; }
-  .bar i { display: block; height: 100%; width: 68%; background: var(--gold); border-radius: 99px; }
-  .row { display: flex; gap: 14px; }
-  .row .scr-card { flex: 1; text-align: center; }
-  .row .t { font-size: 40px; color: var(--gold); }
+  .photo.has-img::after { display: none; }
+  .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,18,18,.55) 0%, rgba(18,18,18,0) 25%, rgba(18,18,18,0) 40%, rgba(18,18,18,.92) 68%, var(--ink) 100%); }
+
+  .d { font-weight: 800; font-stretch: 100%; letter-spacing: -.035em; line-height: .95; }
+  .d em { font-style: italic; color: var(--signal); padding-right: .04em; }
+  .xl { font-size: 168px; }
+  .l { font-size: 120px; }
+  .m { font-size: 96px; }
+  .body { font-size: 44px; line-height: 1.35; color: var(--mute); max-width: 860px; }
+  .body b { color: var(--paper); font-weight: 600; }
+  .label { font-weight: 600; font-size: 28px; letter-spacing: .14em; text-transform: uppercase; color: var(--signal); }
+  .abs { position: absolute; left: var(--side); right: var(--side); }
+
+  /* S2 */
+  .claims { display: grid; gap: 56px; }
+  .claim { font-weight: 500; font-size: 68px; line-height: 1.08; letter-spacing: -.02em; color: var(--mute); }
+  .claim b { display: block; font-weight: 800; color: var(--paper); font-size: 96px; letter-spacing: -.035em; }
+  .claim i { color: var(--signal); font-weight: 800; }
+  .strike { position: relative; color: var(--mute); }
+  .strike::after { content: ""; position: absolute; left: -4px; right: -4px; top: 50%; height: 12px; background: var(--signal); }
+
+  /* S3 */
+  .verse { font-weight: 500; font-size: 60px; line-height: 1.18; letter-spacing: -.015em; }
+  .ref { margin-top: 28px; font-weight: 600; font-size: 30px; color: var(--mute); }
+
+  /* S5 */
+  .feats { display: grid; gap: 44px; border-top: 3px solid var(--signal); padding-top: 52px; }
+  .feat { font-weight: 800; font-size: 66px; line-height: 1.02; letter-spacing: -.03em; }
+  .feat span { display: block; margin-top: 12px; font-weight: 400; font-size: 38px; letter-spacing: 0; color: var(--mute); }
+
+  /* S6 */
+  .cta { display: flex; align-items: stretch; margin-top: 56px; }
+  .cta .a { flex: 1; display: flex; align-items: center; padding: 0 44px; font-weight: 600; font-size: 44px; border: 3px solid var(--paper); border-right: 0; }
+  .cta .b { display: flex; align-items: center; padding: 34px 56px; background: var(--signal); color: var(--ink); font-weight: 900; font-size: 76px; letter-spacing: -.01em; }
 </style>
 </head>
 <body>
 
-<!-- 1. HOOK -->
+<!-- 1. Full-bleed photo, statement bottom-left -->
 <section class="slide" id="s1">
-  <div class="photo" data-n="1"><div class="ph">PHOTO 1<br>Lone man from behind, silhouetted against a stormy sky or city at dusk</div></div>
-  <div class="shade"></div>
-  <div class="top"><span class="pill"><span class="dot"></span>Real talk, men</span><span class="count">1 / 6</span></div>
-  <div class="content">
-    <h1>Never has the world fought this hard to make men <span class="serif">weak.</span></h1>
-    <p>Not like this. <b>Not ever.</b></p>
+  <div class="photo" style="inset:0" data-n="1" data-label=""></div>
+  <div class="scrim"></div>
+  <div class="abs" style="bottom:var(--bottom)">
+    <div class="label" style="margin-bottom:44px">Real talk, men</div>
+    <h1 class="d xl">Men are under <em>attack.</em></h1>
+    <p class="body" style="margin-top:48px">The world has never worked this hard to make men <b>passive, soft, and absent.</b></p>
   </div>
 </section>
 
-<!-- 2. THE ATTACK -->
+<!-- 2. Type only. Three claims, then the turn -->
 <section class="slide" id="s2">
-  <div class="photo" data-n="2"><div class="ph">PHOTO 2<br>Man alone in a dark room, face lit only by his phone screen</div></div>
-  <div class="shade"></div>
-  <div class="top"><span class="pill"><span class="dot"></span>This is an attack</span><span class="count">2 / 6</span></div>
-  <div class="content">
-    <div class="chips">
-      <span class="chip">Strength → “toxic”</span>
-      <span class="chip">Passivity → “peace”</span>
-      <span class="chip">Fatherhood → “optional”</span>
-      <span class="chip">Numb out. Check out. Tap out.</span>
+  <div class="abs" style="top:calc(var(--top) + 40px)">
+    <div class="claims">
+      <p class="claim">Strength is called <b><i>toxic.</i></b></p>
+      <p class="claim">Passivity is called <b><i>peace.</i></b></p>
+      <p class="claim">Fatherhood is called <b><i>optional.</i></b></p>
     </div>
-    <h2>Playing <span class="serif">defense</span> isn’t enough.</h2>
+  </div>
+  <div class="abs" style="bottom:var(--bottom)">
+    <h2 class="d l"><span class="strike">Defense</span><br>isn't enough.</h2>
   </div>
 </section>
 
-<!-- 3. OFFENSE -->
+<!-- 3. Verse up top, photo bleeds off the bottom -->
 <section class="slide" id="s3">
-  <div class="photo" data-n="3"><div class="ph">PHOTO 3<br>Weathered hands on an open Bible, early-morning window light, coffee nearby</div></div>
-  <div class="shade"></div>
-  <div class="top"><span class="pill"><span class="dot"></span>Time to play offense</span><span class="count">3 / 6</span></div>
-  <div class="content">
-    <div class="glass">
-      <div class="verse">“Be watchful, stand firm in the faith, act like men, be strong.”</div>
-      <div class="ref">1 Corinthians 16:13</div>
-    </div>
-    <h2>Men need <span class="serif">tools</span> to fight back.</h2>
+  <div class="photo" style="left:0; right:0; top:1000px; bottom:0" data-n="3" data-label=""></div>
+  <div style="position:absolute; left:0; right:0; top:1000px; height:260px; background:linear-gradient(180deg,var(--ink),rgba(18,18,18,0))"></div>
+  <div class="abs" style="top:var(--top)">
+    <p class="verse">“Be watchful, stand firm in the faith, act like men, be strong.”</p>
+    <p class="ref">1 Corinthians 16:13</p>
+    <h2 class="d l" style="margin-top:84px">Time to play <em>offense.</em></h2>
   </div>
 </section>
 
-<!-- 4. THE APP (phone mockup) -->
+<!-- 4. Offset photo right, copy bottom-left -->
 <section class="slide" id="s4">
-  <div class="photo"></div>
-  <div class="phone"><div class="screen"><div class="notch"></div>
-    <div class="scr-hi">Good morning</div>
-    <div class="scr-h">Today’s training</div>
-    <div class="scr-card hero"><div class="lbl">Daily Word · 5 min</div><div class="t">Lead like Christ leads</div><div class="s">“Husbands, love your wives, as Christ loved the church…”</div></div>
-    <div class="scr-card"><div class="lbl">Father track</div><div class="t">Week 3: Present, not perfect</div><div class="bar"><i></i></div></div>
-    <div class="row"><div class="scr-card"><div class="t">12</div><div class="lbl">Day streak</div></div><div class="scr-card"><div class="t">3</div><div class="lbl">Brothers</div></div></div>
-  </div></div>
-  <div class="shade" style="background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(8,7,6,.92) 70%,#080706 100%)"></div>
-  <div class="top"><span class="pill"><span class="dot"></span>So I built one</span><span class="count">4 / 6</span></div>
-  <div class="content">
-    <h2 style="font-size:96px">Grow in <span class="serif">Christlikeness.</span></h2>
-    <p>Become the <b>man</b>, <b>husband</b> and <b>father</b> the Lord designed you to be.</p>
+  <div class="photo" style="left:300px; right:0; top:var(--top); height:860px" data-n="4" data-label=""></div>
+  <div class="abs" style="bottom:var(--bottom)">
+    <h2 class="d l">So I built a <em>tool.</em></h2>
+    <p class="body" style="margin-top:44px">An app to help men grow in Christlikeness and become the <b>man, husband, and father</b> God designed them to be.</p>
   </div>
 </section>
 
-<!-- 5. WHAT'S INSIDE -->
+<!-- 5. Full-width photo top, feature stack below -->
 <section class="slide" id="s5">
-  <div class="photo" data-n="5"><div class="ph">PHOTO 5<br>Dad walking with his son or daughter outdoors, golden hour, shot from behind</div></div>
-  <div class="shade"></div>
-  <div class="top"><span class="pill"><span class="dot"></span>What’s inside</span><span class="count">5 / 6</span></div>
-  <div class="content">
-    <div class="glass">
-      <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/><path d="M12 7v6M9 10h6"/></svg></div><div><h3>Daily time in the Word</h3><p>Short, focused, built for real life.</p></div></div>
-      <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 20l6-8 4 5 3-4 5 7"/><circle cx="17" cy="6" r="2"/></svg></div><div><h3>Man · Husband · Father</h3><p>Growth tracks for every role.</p></div></div>
-      <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3 3-5 6-5s6 2 6 5M14 15c3 0 8 1 8 5"/></svg></div><div><h3>Habits &amp; accountability</h3><p>Brothers who keep you moving.</p></div></div>
+  <div class="photo" style="left:0; right:0; top:0; height:820px" data-n="5" data-label=""></div>
+  <div class="abs" style="bottom:var(--bottom)">
+    <div class="feats">
+      <p class="feat">Daily time in the Word.<span>Short, focused, built for a real schedule.</span></p>
+      <p class="feat">Growth for every role.<span>As a man, a husband, and a father.</span></p>
+      <p class="feat">Brothers in your corner.<span>Accountability that keeps you moving.</span></p>
     </div>
   </div>
 </section>
 
-<!-- 6. CTA -->
+<!-- 6. Full-bleed photo, single CTA -->
 <section class="slide" id="s6">
-  <div class="photo" data-n="6"><div class="ph">PHOTO 6<br>Small group of men laughing around a fire pit or a table — real brotherhood</div></div>
-  <div class="shade"></div>
-  <div class="top"><span class="pill"><span class="dot"></span>Beta testers wanted</span><span class="count">6 / 6</span></div>
-  <div class="content">
-    <h2>I need a few <span class="serif">good men.</span></h2>
-    <p>Use it. Break it. <b>Tell me the truth.</b></p>
-    <div class="cta"><span>DM me the word</span><b>IRON</b></div>
-    <p style="font-size:32px">Proverbs 27:17 — iron sharpens iron.</p>
+  <div class="photo" style="inset:0" data-n="6" data-label=""></div>
+  <div class="scrim"></div>
+  <div class="abs" style="bottom:var(--bottom)">
+    <div class="label" style="margin-bottom:44px">Testers wanted</div>
+    <h2 class="d l">I need a few <em>good</em> men.</h2>
+    <p class="body" style="margin-top:44px">Use it. Break it. <b>Tell me the truth.</b></p>
+    <div class="cta"><span class="a">DM me the word</span><span class="b">IRON</span></div>
+    <p class="body" style="margin-top:40px; font-size:32px">Iron sharpens iron. Proverbs 27:17</p>
   </div>
 </section>
 
 <script>
-  // Use photos/N.jpg as the background when it exists.
+  const labels = {
+    1: 'Photo 1: lone man from behind at dusk, storm sky or empty road',
+    3: 'Photo 3: hands on an open Bible, early-morning window light',
+    4: 'Photo 4: screenshot of the app, or a man reading on his phone at dawn',
+    5: 'Photo 5: dad walking with his kid outdoors, golden hour, from behind',
+    6: 'Photo 6: a few men around a fire pit, candid, not posed',
+  };
   document.querySelectorAll('.photo[data-n]').forEach(el => {
-    const src = 'photos/' + el.dataset.n + '.jpg', img = new Image();
+    const n = el.dataset.n, src = `photos/${n}.jpg`, img = new Image();
+    el.dataset.label = labels[n];
+    // Slides 1 and 6 put the label near the top so the copy doesn't cover it.
+    if (n === '1' || n === '6') el.style.setProperty('--lt', '1');
     img.onload = () => { el.style.setProperty('--img', `url(${src})`); el.classList.add('has-img'); };
     img.src = src;
   });
 </script>
+<style>.photo[style*="--lt"]::after { top: 300px; bottom: auto; }</style>
 </body>
 </html>
