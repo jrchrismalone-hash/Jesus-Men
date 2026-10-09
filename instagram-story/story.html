@@ -103,8 +103,8 @@
 
 <!-- 5. Full-width photo top, feature stack below -->
 <section class="slide" id="s5">
-  <div class="photo" style="left:0; right:0; top:0; height:820px" data-n="5" data-label=""></div>
-  <div class="abs" style="bottom:var(--bottom)">
+  <div class="abs" style="top:var(--top)">
+    <h2 class="d m" style="margin-bottom:96px">What's <em>inside.</em></h2>
     <div class="feats">
       <p class="feat">Daily time in the Word.<span>Short, focused, built for a real schedule.</span></p>
       <p class="feat">Growth for every role.<span>As a man, a husband, and a father.</span></p>
@@ -115,9 +115,7 @@
 
 <!-- 6. Full-bleed photo, single CTA -->
 <section class="slide" id="s6">
-  <div class="photo" style="inset:0; filter:brightness(.55) saturate(.7)" data-n="6" data-label=""></div>
-  <div class="scrim"></div>
-  <div class="abs" style="bottom:var(--bottom)">
+  <div class="abs" style="top:50%; transform:translateY(-50%)">
     <div class="label" style="margin-bottom:44px">Testers wanted</div>
     <h2 class="d l">I need a few <em>good</em> men.</h2>
     <p class="body" style="margin-top:44px">Use it. Break it. <b>Tell me the truth.</b></p>
@@ -130,8 +128,6 @@
   const labels = {
     3: 'Photo 3: hands on an open Bible, early-morning window light',
     4: 'Photo 4: screenshot of the app, or a man reading on his phone at dawn',
-    5: 'Photo 5: dad walking with his kid outdoors, golden hour, from behind',
-    6: 'Photo 6: a few men around a fire pit, candid, not posed',
   };
   document.querySelectorAll('.photo[data-n]').forEach(el => {
     const n = el.dataset.n, src = `photos/${n}.jpg`, img = new Image();
