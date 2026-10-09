@@ -35,8 +35,8 @@
 
   /* S2 */
   .claims { display: grid; gap: 56px; }
-  .claim { font-weight: 500; font-size: 68px; line-height: 1.08; letter-spacing: -.02em; color: var(--mute); }
-  .claim b { display: block; font-weight: 800; color: var(--paper); font-size: 96px; letter-spacing: -.035em; }
+  .claim { font-weight: 500; font-size: 58px; line-height: 1.08; letter-spacing: -.02em; color: var(--mute); }
+  .claim b { font-weight: 800; color: var(--paper); font-size: 58px; letter-spacing: -.035em; }
   .claim i { color: var(--signal); font-weight: 800; }
   .strike { position: relative; color: var(--mute); }
   .strike::after { content: ""; position: absolute; left: -4px; right: -4px; top: 50%; height: 12px; background: var(--signal); }
@@ -60,17 +60,21 @@
 
 <!-- 1. Full-bleed photo, statement bottom-left -->
 <section class="slide" id="s1">
-  <div class="abs" style="top:50%; transform:translateY(-50%)">
+  <div class="photo" style="left:0; right:0; top:0; height:1600px; background-position:center bottom" data-n="1"></div>
+  <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(18,18,18,.75) 0%, rgba(18,18,18,.35) 45%, rgba(18,18,18,0) 62%, rgba(18,18,18,0) 76%, var(--ink) 84%)"></div>
+  <div class="abs" style="top:var(--top)">
     <div class="label" style="margin-bottom:44px">Real talk, men</div>
     <h1 class="d xl">Men are under <em>attack.</em></h1>
-    <p class="body" style="margin-top:48px">The world has never worked this hard to make men <b>passive, soft, and absent.</b></p>
+    <p class="body" style="margin-top:48px; color:var(--paper)">The world has never worked this hard to make men <b>passive, soft, and absent.</b></p>
   </div>
 </section>
 
 <!-- 2. Type only. Three claims, then the turn -->
 <section class="slide" id="s2">
-  <div class="abs" style="top:calc(var(--top) + 40px)">
-    <div class="claims">
+  <div class="photo" style="left:0; right:0; top:0; height:940px; background-position:center 20%" data-n="2"></div>
+  <div style="position:absolute; left:0; right:0; top:700px; height:240px; background:linear-gradient(180deg,rgba(18,18,18,0),var(--ink))"></div>
+  <div class="abs" style="top:960px">
+    <div class="claims" style="gap:26px">
       <p class="claim">Strength is called <b><i>toxic.</i></b></p>
       <p class="claim">Passivity is called <b><i>peace.</i></b></p>
       <p class="claim">Fatherhood is called <b><i>optional.</i></b></p>
@@ -103,8 +107,9 @@
 
 <!-- 5. Full-width photo top, feature stack below -->
 <section class="slide" id="s5">
-  <div class="abs" style="top:var(--top)">
-    <h2 class="d m" style="margin-bottom:96px">What's <em>inside.</em></h2>
+  <div class="photo" style="left:0; right:0; top:0; height:860px; background-position:center 22%" data-n="5"></div>
+  <div class="abs" style="bottom:var(--bottom)">
+    <h2 class="d m" style="margin-bottom:64px">What's <em>inside.</em></h2>
     <div class="feats">
       <p class="feat">Daily time in the Word.<span>Short, focused, built for a real schedule.</span></p>
       <p class="feat">Growth for every role.<span>As a man, a husband, and a father.</span></p>
@@ -115,7 +120,9 @@
 
 <!-- 6. Full-bleed photo, single CTA -->
 <section class="slide" id="s6">
-  <div class="abs" style="top:50%; transform:translateY(-50%)">
+  <div class="photo" style="left:0; right:0; top:0; height:980px; background-position:center 40%" data-n="6"></div>
+  <div style="position:absolute; left:0; right:0; top:740px; height:240px; background:linear-gradient(180deg,rgba(18,18,18,0),var(--ink))"></div>
+  <div class="abs" style="bottom:var(--bottom)">
     <div class="label" style="margin-bottom:44px">Testers wanted</div>
     <h2 class="d l">I need a few <em>good</em> men.</h2>
     <p class="body" style="margin-top:44px">Use it. Break it. <b>Tell me the truth.</b></p>
